@@ -1,0 +1,17 @@
+body{
+    background-color: #1d2124;
+    color: white;
+}
+
+.main-title{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.card{
+    color: black;
+}
+
+.poster{
+    cursor: pointer;
+}
