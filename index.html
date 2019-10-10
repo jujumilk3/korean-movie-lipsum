@@ -65,15 +65,12 @@
         <div class="col-sm-6 script">
             <h5>현재 선택 영화 : <p id="current_selected_movie" style="display: inline-block;">타짜</p></h5>
             <div class="row" id="script-selector">
-                <button type="button" class="btn btn-dark script-select-button col-sm-3" id="random">Random</button>
-                <button type="button" class="btn btn-dark script-select-button col-sm-3">Dark</button>
-                <button type="button" class="btn btn-dark script-select-button col-sm-3">Dark</button>
-                <button type="button" class="btn btn-dark script-select-button col-sm-3">Dark</button>
+                <button type="button" class="btn btn-dark script-select-button col-sm-5" id="random">Random</button>
             </div>
             <hr class="separator">
             <div class="row">
                 <div class="col-sm-12" id="script-display">
-                    걔가 천당으로 엄마 찾으러 갔어. 근데, 눈까리 없어서 못 찾어. 넌 사람 잘못 건드렸어... 옆집 아저씨? 장난치냐, 이 개새끼야?! 내 동생 어디있어? 내 동생 어디있어?!
+                    -
                 </div>
             </div>
         </div>
@@ -101,16 +98,29 @@
         currentSelectedMovie = movieName;
         $('#current_selected_movie').text(movieNames[currentSelectedMovie]);
         let dialogueCount = dialogue[movieName].length;
-        console.log(movieName);
-        console.log(dialogue[movieName]);
-        console.log(dialogueCount);
-        $('#script-display').text(dialogue[movieName][0]);
+        let buttons = '<button type="button" class="btn btn-dark script-select-button col-sm-5" id="random">Random</button>';
 
         dialogue[movieName].forEach(function (item, index) {
             console.log(item);
             console.log(index);
-        })
+            buttons +='<button type="button" class="btn btn-dark script-select-button col-sm-5" data-index="'+ index +'">' + item[0] + '<small> ('+ item[1].length +')</small></button>';
+        });
+
+        console.log(movieName);
+        console.log(dialogue[movieName]);
+        console.log(dialogueCount);
+
+        $('#script-selector').html(buttons);
     });
+
+    $(document).ready(function (e) {
+        $('[data-movie_name="the_war_of_flower"]').click();
+    });
+
+    $('.script-select-button').click(function (e) {
+
+    });
+
 </script>
 </body>
 </html>
