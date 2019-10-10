@@ -6,6 +6,7 @@ body {
 .movie-select {
     overflow-y: scroll;
     height: 1000px;
+    padding-top: 10px;
 }
 
 .poster {
@@ -21,4 +22,16 @@ body {
 
 .main-wrap {
     background-color: #181819;
+}
+.script-select-button{
+    margin: 0 0 10px 30px;
+}
+
+.script {
+    padding-top: 10px;
+}
+
+.separator {
+    background-color: white;
+    width: 100%;
 }

@@ -19,7 +19,7 @@
                     <div class="card poster" data-movie_name="the_war_of_flower">
                         <img class="card-img-top" src="./assets/images/posters/the_war_of_flower.jpg" alt="Card image">
                         <div class="card-body">
-                            <h4 class="card-title text-center font-weight-bolder">타짜</h4>
+                            <h4 class="card-title text-center font-weight-bolder">타짜<small> (2006)</small></h4>
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                     <div class="card poster" data-movie_name="sunflower">
                         <img class="card-img-top" src="./assets/images/posters/sunflower.png" alt="Card image">
                         <div class="card-body">
-                            <h4 class="card-title text-center font-weight-bolder">해바라기</h4>
+                            <h4 class="card-title text-center font-weight-bolder">해바라기<small> (2006)</small></h4>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                     <div class="card poster" data-movie_name="nameless_ganster">
                         <img class="card-img-top" src="./assets/images/posters/nameless_ganster.jpg" alt="Card image">
                         <div class="card-body">
-                            <h4 class="card-title text-center font-weight-bolder">범죄와의 전쟁</h4>
+                            <h4 class="card-title text-center font-weight-bolder">범죄와의 전쟁<small> (2011)</small></h4>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                     <div class="card poster" data-movie_name="man_from_nowhere">
                         <img class="card-img-top" src="./assets/images/posters/man_from_nowhere.jpg" alt="Card image">
                         <div class="card-body">
-                            <h4 class="card-title text-center font-weight-bolder">아저씨</h4>
+                            <h4 class="card-title text-center font-weight-bolder">아저씨<small> (2010)</small></h4>
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
                     <div class="card poster" data-movie_name="spirit_of_jeet_keun_do">
                         <img class="card-img-top" src="./assets/images/posters/spirit_of_jeet_keun_do.jpg" alt="Card image">
                         <div class="card-body">
-                            <h4 class="card-title text-center font-weight-bolder">말죽거리 잔혹사</h4>
+                            <h4 class="card-title text-center font-weight-bolder">말죽거리 잔혹사<small> (2004)</small></h4>
                         </div>
                     </div>
                 </div>
@@ -63,8 +63,18 @@
         </div>
 
         <div class="col-sm-6 script">
+            <h5>현재 선택 영화 : <p id="current_selected_movie" style="display: inline-block;">타짜</p></h5>
+            <div class="row" id="script-selector">
+                <button type="button" class="btn btn-dark script-select-button col-sm-3" id="random">Random</button>
+                <button type="button" class="btn btn-dark script-select-button col-sm-3">Dark</button>
+                <button type="button" class="btn btn-dark script-select-button col-sm-3">Dark</button>
+                <button type="button" class="btn btn-dark script-select-button col-sm-3">Dark</button>
+            </div>
+            <hr class="separator">
             <div class="row">
-                This is Script Parts
+                <div class="col-sm-12" id="script-display">
+                    걔가 천당으로 엄마 찾으러 갔어. 근데, 눈까리 없어서 못 찾어. 넌 사람 잘못 건드렸어... 옆집 아저씨? 장난치냐, 이 개새끼야?! 내 동생 어디있어? 내 동생 어디있어?!
+                </div>
             </div>
         </div>
     </div>
@@ -75,12 +85,31 @@
 <script src="./lib/jquery-3.3.1/jquery-3.3.1.slim.min.js" type="text/javascript"></script>
 <script src="./lib/popper/popper.min.js" type="text/javascript"></script>
 <script src="./lib/bootstrap-4.3.1-dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="./assets/js/dialogue.js"></script>
 <script type="text/javascript">
+    let currentSelectedMovie = 'the_war_of_flower';
+    let movieNames = {
+        'the_war_of_flower': '타짜',
+        'sunflower': '해바라기',
+        'nameless_ganster': '범죄와의 전쟁',
+        'man_from_nowhere': '아저씨',
+        'spirit_of_jeet_keun_do': '말죽거리 잔혹사'
+    };
+
     $('.poster').click(function (e) {
         let movieName = $(this).data('movie_name');
-        console.log(movieName);
-    });
+        currentSelectedMovie = movieName;
+        $('#current_selected_movie').text(movieNames[currentSelectedMovie]);
 
+
+
+        let dialogueCount = dialogue[movieName].length;
+        console.log(movieName);
+        console.log(dialogue[movieName]);
+        console.log(dialogue[movieName].length);
+        $('#script-display').text(dialogue[movieName][0]);
+        console.log(dialogue[movieName][0].length);
+    });
 </script>
 </body>
 </html>
