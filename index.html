@@ -100,15 +100,16 @@
         let movieName = $(this).data('movie_name');
         currentSelectedMovie = movieName;
         $('#current_selected_movie').text(movieNames[currentSelectedMovie]);
-
-
-
         let dialogueCount = dialogue[movieName].length;
         console.log(movieName);
         console.log(dialogue[movieName]);
-        console.log(dialogue[movieName].length);
+        console.log(dialogueCount);
         $('#script-display').text(dialogue[movieName][0]);
-        console.log(dialogue[movieName][0].length);
+
+        dialogue[movieName].forEach(function (item, index) {
+            console.log(item);
+            console.log(index);
+        })
     });
 </script>
 </body>
