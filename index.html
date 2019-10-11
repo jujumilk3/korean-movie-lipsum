@@ -69,8 +69,14 @@
             </div>
             <hr class="separator">
             <div class="row">
-                <div class="col-sm-12" id="script-display">
+                <div class="col-sm-10" id="title-display" style="font-weight: bolder; font-size: 20px;">
                     -
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-secondary" id="copy">복사</button>
+                </div>
+                <div class="col-sm-12" id="script-display">
+
                 </div>
             </div>
         </div>
@@ -97,19 +103,11 @@
         let movieName = $(this).data('movie_name');
         currentSelectedMovie = movieName;
         $('#current_selected_movie').text(movieNames[currentSelectedMovie]);
-        let dialogueCount = dialogue[movieName].length;
-        let buttons = '<button type="button" class="btn btn-dark script-select-button col-sm-5" id="random">Random</button>';
+        let buttons = '<button type="button" class="btn btn-dark script-select-button col-sm-5" onclick="scriptRandom()">Random</button>';
 
         dialogue[movieName].forEach(function (item, index) {
-            console.log(item);
-            console.log(index);
-            buttons +='<button type="button" class="btn btn-dark script-select-button col-sm-5" data-index="'+ index +'">' + item[0] + '<small> ('+ item[1].length +')</small></button>';
+            buttons +='<button type="button" class="btn btn-dark script-select-button col-sm-5" onclick="scriptSelect(' + index + ')">' + item[0] + '<small> ('+ item[1].length +')</small></button>';
         });
-
-        console.log(movieName);
-        console.log(dialogue[movieName]);
-        console.log(dialogueCount);
-
         $('#script-selector').html(buttons);
     });
 
@@ -117,9 +115,41 @@
         $('[data-movie_name="the_war_of_flower"]').click();
     });
 
-    $('.script-select-button').click(function (e) {
+    function scriptSelect(index){
+        $('#title-display').text(dialogue[currentSelectedMovie][index][0]);
+        $('#script-display').text(dialogue[currentSelectedMovie][index][1]);
+    }
 
+    function scriptRandom() {
+        let dialogueCount = dialogue[currentSelectedMovie].length;
+        let randomSelectedIndex = Math.floor(Math.random() * dialogueCount);
+        $('#title-display').text(dialogue[currentSelectedMovie][randomSelectedIndex][0]);
+        $('#script-display').text(dialogue[currentSelectedMovie][randomSelectedIndex][1]);
+    }
+
+    function copyToClipboard(val) {
+        var t = document.createElement("textarea");
+        document.body.appendChild(t);
+        t.value = val;
+        t.select();
+        document.execCommand('copy');
+        document.body.removeChild(t);
+    }
+
+    $('#copy').click(function (e) {
+        let currentSelectedDialogue = $('#script-display').text();
+        copyToClipboard(currentSelectedDialogue);
+        alert('복사됨!');
     });
+
+    function copyToClipboard(val) {
+        var t = document.createElement("textarea");
+        document.body.appendChild(t);
+        t.value = val;
+        t.select();
+        document.execCommand('copy');
+        document.body.removeChild(t);
+    }
 
 </script>
 </body>
